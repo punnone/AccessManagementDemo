@@ -1,6 +1,6 @@
 import React from 'react'
 import tw from 'twin.macro'
-import  Button  from './components/Button'
+import  Button  from '../Button'
 
 const styles = {
   // Move long class sets out of jsx to keep it scannable
@@ -10,7 +10,7 @@ const styles = {
   ],
 }
 
-const App = () => (
+const ButtonTest = () => (
   <div css={styles.container({ hasBackground: true })}>
     <div tw="flex flex-col justify-center h-full gap-y-5">
       <Button variant="primary">Submit</Button>
@@ -20,4 +20,4 @@ const App = () => (
   </div>
 )
 
-export default App
+export default ButtonTest

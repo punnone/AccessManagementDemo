@@ -1,0 +1,25 @@
+import React from 'react'
+import tw from 'twin.macro'
+import Button  from '../Button'
+// import logo from '../assets/images/logo.svg';
+// import '../assets/css/App.css';
+
+const styles = {
+  // Move long class sets out of jsx to keep it scannable
+  container: ({ hasBackground }) => [
+    tw`flex flex-col items-center justify-center h-screen`,
+    hasBackground && tw`bg-gradient-to-b from-yellow-50 to-blue-200 `,
+  ],
+}
+
+const App = () => (
+  <div css={styles.container({ hasBackground: true })}>
+    <div tw="flex flex-col justify-center h-full gap-y-5">
+      <Button variant="primary">Submit</Button>
+      <Button variant="secondary">Cancel</Button>
+      <Button isSmall>Close</Button>
+    </div>
+  </div>
+)
+
+export default App
