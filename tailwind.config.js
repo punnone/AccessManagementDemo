@@ -27,19 +27,23 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
-      // Add defult color
-      'blue-primary': '#3DAEE3',
-      'red-primary': '#F43F5E',
-      'green-primary': '#14B8A6',
-      'yellow-primary': '#F59E0B',
-      'gray-primary': '#6B7280',
-      'black-primary': '111827',
 
-      'blue-highlight': '#F0F9FF',
-      'red-highlight': '#FFF1F2',
-      'green-highlight': '#F0FDFA',
-      'yellow-highlight': '#F59E0B',
-      
+      // Add defult color
+      primary: {
+        blue: '#3DAEE3',
+        red: '#F43F5E',
+        green: '#14B8A6',
+        yellow: '#F59E0B',
+        gray: '#6B7280',
+        black: '#111827',
+      },
+
+      highlight: {
+        blue: '#F0F9FF',
+        red: '#FFF1F2',
+        green: '#F0FDFA',
+        yellow: '#F59E0B',
+      },
     },
     spacing: {
       px: '1px',

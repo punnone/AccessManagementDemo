@@ -9,7 +9,7 @@ const styles = {
   // Move long class sets out of jsx to keep it scannable
   container: ({ hasBackground }) => [
     tw`tw-flex tw-flex-col tw-items-center tw-justify-center tw-h-screen`,
-    hasBackground && tw`tw-bg-gradient-to-b tw-from-blue-primary tw-to-blue-200 `,
+    hasBackground && tw`tw-bg-gradient-to-b tw-from-primary-blue tw-to-blue-200 `,
   ],
 }
 
@@ -19,7 +19,7 @@ const App = () => (
       <Button variant="primary">Submit</Button>
       <Button variant="secondary">Cancel</Button>
       <Button isSmall>Close</Button>
-      <button className="tw-text-blue-primary">Test blue</button>
+      <button className="tw-text-primary-blue">Test blue</button>
     </div>
   </div>
 )
