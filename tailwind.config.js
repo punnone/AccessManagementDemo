@@ -27,10 +27,19 @@ module.exports = {
       indigo: colors.indigo,
       purple: colors.violet,
       pink: colors.pink,
-      'indigo-lighter': '#b3bcf5',
-      'indigo': '#5c6ac4',
-      'indigo-dark': '#202e78',
+      // Add defult color
+      'blue-primary': '#3DAEE3',
+      'red-primary': '#F43F5E',
+      'green-primary': '#14B8A6',
+      'yellow-primary': '#F59E0B',
+      'gray-primary': '#6B7280',
+      'black-primary': '111827',
 
+      'blue-highlight': '#F0F9FF',
+      'red-highlight': '#FFF1F2',
+      'green-highlight': '#F0FDFA',
+      'yellow-highlight': '#F59E0B',
+      
     },
     spacing: {
       px: '1px',
@@ -273,6 +282,8 @@ module.exports = {
       ],
     },
     fontSize: {
+      '9px': ['9px', { lineHeight: '1' }],
+      '13px': ['13px', { lineHeight: '1' }],
       xs: ['0.75rem', { lineHeight: '1rem' }],
       sm: ['0.875rem', { lineHeight: '1.25rem' }],
       base: ['1rem', { lineHeight: '1.5rem' }],
