@@ -32,6 +32,7 @@ const ReactSuiteTable = (
     isColumnActionAvaliable,
     tableSubColumnActionName,
     tableColumnActionComponent,
+    tableColumnActionRole,
     isExpandComponent,
     isSubExpandComponent,
     isCheckboxComponent,
@@ -290,6 +291,8 @@ const ReactSuiteTable = (
 
   const ActionCell = ({ rowData, dataKey, ...props }) => {
 
+    console.log({ rowData })
+
     function handleAction({ name, action, icon }) {
       switch (action) {
         case 'more': onClickMore({ rowData }); break;
@@ -318,27 +321,44 @@ const ReactSuiteTable = (
       )
     }
 
+    function checkPermissions(dataRole, tableRole) {
+      return tableRole === 'admin'
+        ? true
+        : tableRole === 'professor'
+          ? dataRole === 'student'
+          : false
+    }
+
     return (
       <Cell {...props} className="link-group">
         {
           tableColumnActionComponent &&
           tableColumnActionComponent.map((elem, index) => {
+            console.log({ tableColumnActionComponent })
             if (tableColumnActionComponent.length === 1) {
               return (
-                <IconButton key={index}
-                  appearance="subtle"
-                  onClick={() => handleAction(elem)}
-                  icon={<Icon icon={elem.icon} />}
-                />
+                <>
+                  {
+                    checkPermissions(rowData.role, tableColumnActionRole) &&
+                    <IconButton key={index}
+                      appearance="subtle"
+                      onClick={() => handleAction(elem)}
+                      icon={<Icon icon={elem.icon} />}
+                    />
+                  }
+                </>
               )
             } else {
               return (
                 <>
-                  <IconButton key={index}
-                    appearance="subtle"
-                    onClick={() => handleAction(elem)}
-                    icon={<Icon icon={elem.icon} />}
-                  />
+                  {
+                    checkPermissions(rowData.role, tableColumnActionRole) &&
+                    <IconButton key={index}
+                      appearance="subtle"
+                      onClick={() => handleAction(elem)}
+                      icon={<Icon icon={elem.icon} />}
+                    />
+                  }
 
                   <Divider vertical />
                 </>

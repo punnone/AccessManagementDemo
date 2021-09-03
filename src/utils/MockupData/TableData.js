@@ -1,4 +1,4 @@
-export const TableModel = [
+export const TableData = [
   {
     id: 1,
     name: 'John Doe',

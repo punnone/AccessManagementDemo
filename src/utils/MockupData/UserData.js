@@ -1,33 +1,31 @@
-export const UserModel = [
+export const UserData = [
   {
     id: 1,
-    username: 'john.doe@dmail.com',
+    username: 'admin',
     role: 'admin',
-    permissions: ['create', 'read', 'update', 'delete'],
-    pages: ['Register'],
-    input: []
+    permissions: ['create', 'read', 'update', 'delete']
   },
   {
     id: 2,
-    username: 'jane.doe@dmail.com',
+    username: 'professor',
     role: 'professor',
     permissions: ['read', 'update']
   },
   {
     id: 3,
-    username: 'baby.doe@dmail.com',
+    username: 'student',
     role: 'student',
     permissions: ['read']
   },
   {
     id: 4,
-    username: 'kid.doe@dmail.com',
+    username: 'user',
     role: 'user',
     permissions: ['read']
   },
   {
     id: 5,
-    username: 'Anna.doe@dmail.com',
+    username: 'guest',
     role: 'guest',
     permissions: []
   }

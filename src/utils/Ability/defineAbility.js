@@ -4,28 +4,27 @@ const { rules, can, cannot } = new AbilityBuilder(Ability)
 export function defineAbilitiesOnTableFor(user) {
   const PAGE = 'Table'
 
+  console.log({ userPermissions: user.permissions })
   switch (user.role) {
     case 'admin':
       can(
-        ['create', 'read', 'update', 'delete'],
+        user.permissions,
         PAGE
       )
       break;
 
     case 'professor':
       can(
-        ['create', 'read', 'update'],
-        PAGE,
-        ['active']
+        user.permissions,
+        PAGE
       )
 
       cannot(['delete'], PAGE)
-      cannot(['delete'], PAGE, { role: 'professor' })
       break;
 
     case 'student':
       can(
-        ['read', 'update'],
+        user.permissions,
         PAGE,
         {
           user_id: user.user_id
@@ -36,7 +35,7 @@ export function defineAbilitiesOnTableFor(user) {
       break;
 
     case 'user':
-      can('read', PAGE)
+      can(user.permissions, PAGE)
 
       cannot(['create', 'update', 'delete'], PAGE)
       break;
@@ -47,4 +46,46 @@ export function defineAbilitiesOnTableFor(user) {
   }
 
   return new Ability(rules);
+}
+
+export function defineAbilitiesForA(user) {
+
+  switch (user.permissions) {
+    case value:
+      // some result
+      break;
+
+    default:
+      break;
+  }
+
+  return new Ability(rules)
+}
+
+export function defineAbilitiesForB(user) {
+
+  switch (user.permissions) {
+    case value:
+      // some result
+      break;
+
+    default:
+      break;
+  }
+
+  return new Ability(rules)
+}
+
+export function defineAbilitiesForC(user) {
+
+  switch (user.permissions) {
+    case value:
+      // some result
+      break;
+
+    default:
+      break;
+  }
+
+  return new Ability(rules)
 }
