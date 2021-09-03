@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import moment from 'moment'
 import { defineAbilitiesOnTableFor } from '../../utils/Ability/defineAbility'
-import Table from '../../components/Table'
+import Table from '../../Components/Table'
 import '../../assets/css/App.css'
 import tw from 'twin.macro'
 import Button from '../Button'
@@ -421,7 +421,7 @@ const App = () => {
     setData(data)
     setTimeout(() => {
       setLoading(false)
-    }, 1750);
+    }, 500);
   }
 
   return (
