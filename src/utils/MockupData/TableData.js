@@ -9,7 +9,13 @@ export const TableData = [
     role: 'admin',
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm'
+    created: 'DD/MM/YYYY HH:mm',
+    isAaction: {
+      create: true,
+      read: true,
+      update: true,
+      delete: true
+    }
   },
   {
     id: 2,
@@ -21,7 +27,13 @@ export const TableData = [
     role: 'professor',
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm'
+    created: 'DD/MM/YYYY HH:mm',
+    isAaction: {
+      create: true,
+      read: true,
+      update: true,
+      delete: true
+    }
   },
   {
     id: 3,
@@ -33,7 +45,13 @@ export const TableData = [
     role: 'professor',
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm'
+    created: 'DD/MM/YYYY HH:mm',
+    isAaction: {
+      create: true,
+      read: true,
+      update: true,
+      delete: true
+    }
   },
   {
     id: 4,
@@ -45,7 +63,13 @@ export const TableData = [
     role: 'student',
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm'
+    created: 'DD/MM/YYYY HH:mm',
+    isAaction: {
+      create: true,
+      read: true,
+      update: true,
+      delete: true
+    }
   },
   {
     id: 5,
@@ -57,7 +81,13 @@ export const TableData = [
     role: 'student',
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm'
+    created: 'DD/MM/YYYY HH:mm',
+    isAaction: {
+      create: true,
+      read: true,
+      update: true,
+      delete: true
+    }
   },
   {
     id: 6,
@@ -69,6 +99,12 @@ export const TableData = [
     role: 'guest',
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm'
+    created: 'DD/MM/YYYY HH:mm',
+    isAaction: {
+      create: false,
+      read: false,
+      update: false,
+      delete: false
+    }
   },
 ]

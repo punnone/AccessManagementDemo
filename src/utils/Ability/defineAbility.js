@@ -51,7 +51,7 @@ export function defineAbilitiesOnTableFor(user) {
 export function defineAbilitiesForA(user) {
 
   switch (user.permissions) {
-    case value:
+    case 'value':
       // some result
       break;
 
@@ -65,7 +65,7 @@ export function defineAbilitiesForA(user) {
 export function defineAbilitiesForB(user) {
 
   switch (user.permissions) {
-    case value:
+    case 'value':
       // some result
       break;
 
@@ -79,7 +79,7 @@ export function defineAbilitiesForB(user) {
 export function defineAbilitiesForC(user) {
 
   switch (user.permissions) {
-    case value:
+    case 'value':
       // some result
       break;
 
@@ -88,4 +88,8 @@ export function defineAbilitiesForC(user) {
   }
 
   return new Ability(rules)
+}
+
+export function defineAbilitiesForNoBody() {
+
 }
