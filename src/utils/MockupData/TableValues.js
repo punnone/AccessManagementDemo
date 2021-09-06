@@ -1,4 +1,4 @@
-export const TableData = [
+export const TableValues = [
   {
     id: 1,
     name: 'John Doe',
@@ -10,7 +10,7 @@ export const TableData = [
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
     created: 'DD/MM/YYYY HH:mm',
-    isAaction: {
+    isAction: {
       create: true,
       read: true,
       update: true,
@@ -28,7 +28,7 @@ export const TableData = [
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
     created: 'DD/MM/YYYY HH:mm',
-    isAaction: {
+    isAction: {
       create: true,
       read: true,
       update: true,
@@ -46,7 +46,7 @@ export const TableData = [
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
     created: 'DD/MM/YYYY HH:mm',
-    isAaction: {
+    isAction: {
       create: true,
       read: true,
       update: true,
@@ -64,7 +64,7 @@ export const TableData = [
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
     created: 'DD/MM/YYYY HH:mm',
-    isAaction: {
+    isAction: {
       create: true,
       read: true,
       update: true,
@@ -82,7 +82,7 @@ export const TableData = [
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
     created: 'DD/MM/YYYY HH:mm',
-    isAaction: {
+    isAction: {
       create: true,
       read: true,
       update: true,
@@ -100,7 +100,7 @@ export const TableData = [
     active: 1,
     updated: 'DD/MM/YYYY HH:mm',
     created: 'DD/MM/YYYY HH:mm',
-    isAaction: {
+    isAction: {
       create: false,
       read: false,
       update: false,
