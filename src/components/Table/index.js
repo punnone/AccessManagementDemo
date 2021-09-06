@@ -291,8 +291,6 @@ const ReactSuiteTable = (
 
   const ActionCell = ({ rowData, dataKey, ...props }) => {
 
-    console.log({ rowData })
-
     function handleAction({ name, action, icon }) {
       switch (action) {
         case 'more': onClickMore({ rowData }); break;
@@ -334,7 +332,6 @@ const ReactSuiteTable = (
         {
           tableColumnActionComponent &&
           tableColumnActionComponent.map((elem, index) => {
-            console.log({ tableColumnActionComponent })
             if (tableColumnActionComponent.length === 1) {
               return (
                 <>
@@ -480,9 +477,6 @@ const ReactSuiteTable = (
     const isDisplayType = rowDataExpanded?.expand_type
     const isColumns = rowDataExpanded?.columns
     const isData = rowDataExpanded?.values
-
-    console.log({ rowDataExpanded, rowData })
-    console.log({ isData })
 
     return _.isEmpty(rowDataExpanded)
       ? (<>No Data</>)

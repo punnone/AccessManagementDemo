@@ -1,9 +1,8 @@
 const { AbilityBuilder, Ability } = require('@casl/ability');
 const { rules, can, cannot } = new AbilityBuilder(Ability)
+const PAGE = 'Table'
 
 export function defineAbilitiesOnTableFor(user) {
-  const PAGE = 'Table'
-
   console.log({ userPermissions: user.permissions })
   switch (user.role) {
     case 'admin':
@@ -48,48 +47,27 @@ export function defineAbilitiesOnTableFor(user) {
   return new Ability(rules);
 }
 
-export function defineAbilitiesForA(user) {
+export function defineAbilitiesForAdmin(user) {
 
-  switch (user.permissions) {
-    case 'value':
-      // some result
-      break;
-
-    default:
-      break;
-  }
+  can(['create', 'read', 'update', 'delete'], PAGE)
 
   return new Ability(rules)
 }
 
-export function defineAbilitiesForB(user) {
+export function defineAbilitiesForProfessor(user) {
 
-  switch (user.permissions) {
-    case 'value':
-      // some result
-      break;
+  can(user.permissions, PAGE)
 
-    default:
-      break;
-  }
+  cannot(['create', 'update', 'delete'], PAGE, { field: 'Computer Science' })
 
   return new Ability(rules)
 }
 
-export function defineAbilitiesForC(user) {
+export function defineAbilitiesForStudent(user) {
 
-  switch (user.permissions) {
-    case 'value':
-      // some result
-      break;
+  can(user.permissions, PAGE)
 
-    default:
-      break;
-  }
+  cannot(['create', 'update', 'delete'], PAGE)
 
   return new Ability(rules)
-}
-
-export function defineAbilitiesForNoBody() {
-
 }

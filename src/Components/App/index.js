@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import moment from 'moment'
 import { defineAbilitiesOnTableFor } from '../../utils/Ability/defineAbility'
 import Table from '../../components/Table'
@@ -485,111 +485,6 @@ const App = () => {
         }
         break;
 
-      case 'user':
-        dataWithPermissions = {
-          columns: [
-            {
-              column: 'name',
-              display: {
-                en: 'name'
-              }
-            },
-            {
-              column: 'faculty',
-              display: {
-                en: 'Faculty'
-              }
-            },
-            {
-              column: 'field',
-              display: {
-                en: 'Field'
-              }
-            },
-            {
-              column: 'created',
-              display: {
-                en: 'Start Date'
-              }
-            }
-          ],
-          values: [
-            {
-              id: 1,
-              name: 'John Doe',
-              faculty_id: '123456',
-              faculty: 'Engineering',
-              field_id: '000456',
-              field: 'Computer Engineering',
-              role: '',
-              active: 1,
-              updated: moment().format('DD/MM/YYYY HH:mm'),
-              created: moment().format('DD/MM/YYYY HH:mm')
-            },
-            {
-              id: 2,
-              name: 'Jane Doe',
-              faculty_id: '123457',
-              faculty: 'Engineering',
-              field_id: '000457',
-              field: 'Computer Engineering',
-              role: '',
-              active: 1,
-              updated: moment().format('DD/MM/YYYY HH:mm'),
-              created: moment().format('DD/MM/YYYY HH:mm')
-            },
-            {
-              id: 3,
-              name: 'Baby Doe',
-              faculty_id: '123458',
-              faculty: 'Science',
-              field_id: '000458',
-              field: 'Computer Science',
-              role: '',
-              active: 1,
-              updated: moment().format('DD/MM/YYYY HH:mm'),
-              created: moment().format('DD/MM/YYYY HH:mm')
-            },
-            {
-              id: 4,
-              name: 'Kid Doe',
-              faculty_id: '123459',
-              faculty: 'Science',
-              field_id: '000459',
-              field: 'Computer Science',
-              role: '',
-              active: 1,
-              updated: moment().format('DD/MM/YYYY HH:mm'),
-              created: moment().format('DD/MM/YYYY HH:mm')
-            },
-            {
-              id: 5,
-              name: 'Anna Doe',
-              faculty_id: '123460',
-              faculty: 'Science',
-              field_id: '000460',
-              field: 'Mathematics',
-              role: '',
-              active: 1,
-              updated: moment().format('DD/MM/YYYY HH:mm'),
-              created: moment().format('DD/MM/YYYY HH:mm')
-            },
-            {
-              id: 6,
-              name: 'the babadook',
-              faculty_id: '',
-              faculty: '',
-              field_id: '',
-              field: '',
-              role: '',
-              active: 1,
-              updated: moment().format('DD/MM/YYYY HH:mm'),
-              created: moment().format('DD/MM/YYYY HH:mm')
-            }
-          ]
-        }
-        break;
-
       default:
         dataWithPermissions = {
           columns: [
@@ -703,7 +598,7 @@ const App = () => {
           <button className="tw-text-primary-blue">Test blue</button>
         </div>
       </div>
-    </React.Fragment >
+    </React.Fragment>
   )
 }
 
