@@ -218,8 +218,8 @@ const ReactSuiteTable = (
     <Dropdown.Menu onSelect={onSelect}>
       {
         dropdownItem &&
-        dropdownItem.map(({ key, icon, text }, index) => (
-          <Dropdown.Item eventKey={key} key={index}>
+        dropdownItem.map(({ key, icon, text, available }, index) => (
+          <Dropdown.Item eventKey={key} key={index} style={{ display: available ? '' : 'none' }}>
             <Icon icon={icon} />{" "}{text}
           </Dropdown.Item>
         ))
@@ -319,14 +319,6 @@ const ReactSuiteTable = (
       )
     }
 
-    function checkPermissions(dataRole, tableRole) {
-      return tableRole === 'admin'
-        ? true
-        : tableRole === 'professor'
-          ? dataRole === 'student'
-          : false
-    }
-
     return (
       <Cell {...props} className="link-group">
         {
@@ -336,11 +328,11 @@ const ReactSuiteTable = (
               return (
                 <>
                   {
-                    checkPermissions(rowData.role, tableColumnActionRole) &&
                     <IconButton key={index}
                       appearance="subtle"
                       onClick={() => handleAction(elem)}
                       icon={<Icon icon={elem.icon} />}
+                      style={{ display: elem?.available ? '' : 'none' }}
                     />
                   }
                 </>
@@ -349,11 +341,11 @@ const ReactSuiteTable = (
               return (
                 <>
                   {
-                    checkPermissions(rowData.role, tableColumnActionRole) &&
                     <IconButton key={index}
                       appearance="subtle"
                       onClick={() => handleAction(elem)}
                       icon={<Icon icon={elem.icon} />}
+                      style={{ display: elem?.available ? '' : 'none' }}
                     />
                   }
 
@@ -374,7 +366,8 @@ const ReactSuiteTable = (
         {
           tableDropdownMenuMore &&
             tableDropdownMenuMore.length > 0
-            ? <CustomWhisper data={rowData}>
+            ?
+            <CustomWhisper data={rowData}>
               <IconButton
                 appearance="subtle"
                 icon={<Icon icon="more" />}
@@ -693,6 +686,7 @@ const ReactSuiteTable = (
                   flexGrow={1}
                   minWidth={100}
                   sortable
+                  style={{ display: column?.display?.available ? '' : 'none' }}
                 >
                   <HeaderCell id={Key}>
                     {TitleName}

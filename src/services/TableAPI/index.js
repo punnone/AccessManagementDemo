@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const TableAPI = {
-  getPermissions: (username, password) => {
+  getPermissions: ({ username, password }) => {
     return axios({
       url: `http://10.224.188.14/api/login`,
       method: "POST",
@@ -14,11 +14,11 @@ export const TableAPI = {
       }
     })
       .then((response) => {
-        console.log({ getUserPermissionsSuccess: response.data })
+        // console.log({ getUserPermissionsSuccess: response.data })
         return response.data
       })
       .catch((error) => {
-        console.log({ getUserPermissionsError: error })
+        // console.log({ getUserPermissionsError: error })
         throw error
       })
   }

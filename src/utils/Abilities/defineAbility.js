@@ -3,7 +3,6 @@ const { rules, can, cannot } = new AbilityBuilder(Ability)
 const PAGE = 'Table'
 
 export function defineAbilitiesOnTableFor(user) {
-  console.log({ userPermissions: user.permissions })
   switch (user.role) {
     case 'admin':
       can(

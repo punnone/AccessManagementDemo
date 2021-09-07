@@ -1,6 +1,15 @@
-import { UserData } from "./UserData";
+import { UserRoles } from "./UserRole";
 import { TableValues } from "./TableValues";
 import { TableColumns } from "./TableColumns";
-import { TableActions } from "./TableActions";
+import {
+  TableActions,
+  TableActionsMore
+} from "./TableActions";
 
-export { UserData, TableColumns, TableValues, TableActions }
+export {
+  UserRoles,
+  TableColumns,
+  TableValues,
+  TableActions,
+  TableActionsMore
+}

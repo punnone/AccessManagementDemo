@@ -1,4 +1,4 @@
-export const UserData = [
+export const UserRoles = [
   {
     id: 1,
     username: 'admin',
@@ -16,17 +16,5 @@ export const UserData = [
     username: 'student',
     role: 'student',
     permissions: ['read']
-  },
-  {
-    id: 4,
-    username: 'user',
-    role: 'user',
-    permissions: ['read']
-  },
-  {
-    id: 5,
-    username: 'guest',
-    role: 'guest',
-    permissions: []
   }
 ]
