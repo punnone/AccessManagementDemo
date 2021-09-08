@@ -4,7 +4,10 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,react,node,macos,dotenv,sublimetext
 
 ### dotenv ###
-.env
+.env*
+
+package-lock.json
+
 
 ### macOS ###
 # General
@@ -13,7 +16,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
