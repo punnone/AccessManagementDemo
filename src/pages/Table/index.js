@@ -101,13 +101,14 @@ function TablePage({ ability }) {
         break;
       case 'professor':
         let updateProfessorValues = data.values && data.values.map((v, i) =>
-          v.field === 'Computer Science'
+          ['Computer Science'].includes(v.field)
             ?
             {
               ...v,
               isAction: {
+                field: v.field,
                 create: false,
-                read: false,
+                read: true,
                 update: false,
                 delete: false
               }
@@ -119,7 +120,11 @@ function TablePage({ ability }) {
           ...data.values,
           values: updateProfessorValues
         })
-        setTableDropdownMenuMore(tableDropdownMenuMore)
+        let updateProfessorDropdownMenuMore = tableDropdownMenuMore.map((v, i) =>
+          ({ ...v, field: 'Computer Science' })
+        )
+        console.table(updateProfessorDropdownMenuMore)
+        setTableDropdownMenuMore(updateProfessorDropdownMenuMore)
         setTableColumnActionName('View | More')
         break;
       case 'student':
@@ -156,6 +161,7 @@ function TablePage({ ability }) {
   // EVENT CHANGE ROLE
   const onClickRole = (e) => {
     setLoading(true)
+    console.clear()
     // POST Username, Password then return { permissions: <object>, role: <string>, username: <string>, _id: <string> }
     TableAPI.getPermissions({ username: e.target.name, password: 'password' })
       .then((user) => {

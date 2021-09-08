@@ -214,22 +214,32 @@ const ReactSuiteTable = (
     )
   }
 
-  const Menu = ({ onSelect, dropdownItem }) => (
-    <Dropdown.Menu onSelect={onSelect}>
-      {
-        dropdownItem &&
-        dropdownItem.map(({ key, icon, text, available }, index) => (
-          <Dropdown.Item eventKey={key} key={index} style={{ display: available ? '' : 'none' }}>
-            <Icon icon={icon} />{" "}{text}
-          </Dropdown.Item>
-        ))
-      }
-    </Dropdown.Menu>
-  )
+  const Menu = ({ onSelect, rowData, dropdownItem }) => {
+    return (
+      <Dropdown.Menu onSelect={onSelect}>
+        {
+          dropdownItem &&
+          dropdownItem.map(({ key, icon, text, available, field }, index) => (
+            <Dropdown.Item eventKey={key} key={index}
+              style={{
+                display: available
+                  ? rowData?.isAction?.field
+                    ? field.includes(rowData?.isAction?.field) ? 'none' : ''
+                    : ''
+                  : 'none'
+              }}
+            >
+              <Icon icon={icon} />{" "}{text}
+            </Dropdown.Item>
+          ))
+        }
+      </Dropdown.Menu>
+    )
+  }
 
-  const MenuPopover = ({ onSelect, dropdownItem, ...rest }) => (
+  const MenuPopover = ({ onSelect, rowData, dropdownItem, ...rest }) => (
     <Popover {...rest} full>
-      <Menu onSelect={onSelect} dropdownItem={dropdownItem} />
+      <Menu onSelect={onSelect} rowData={rowData} dropdownItem={dropdownItem} />
     </Popover>
   )
 
@@ -257,7 +267,7 @@ const ReactSuiteTable = (
           container={() => {
             return tableBody
           }}
-          speaker={<MenuPopover onSelect={this.handleSelectMenu} dropdownItem={tableDropdownMenuMore} />}
+          speaker={<MenuPopover onSelect={this.handleSelectMenu} rowData={this.rowData} dropdownItem={tableDropdownMenuMore} />}
         >
           {this.props.children}
         </Whisper>

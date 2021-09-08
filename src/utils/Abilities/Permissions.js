@@ -11,7 +11,7 @@ export function updateAbility(user) {
     case "professor":
       can(user.permissions, "Table");
 
-      cannot(['create', 'update', 'delete'], "Table", { values: ['Computer Science'] })
+      cannot(['create', 'update', 'delete'], "Table", { field: 'Computer Science' })
       break;
 
     case "student":
