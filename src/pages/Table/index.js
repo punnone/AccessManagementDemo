@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react'
-import moment from 'moment'
-import axios from 'axios'
+import decode from 'jwt-decode'
 import { TableContext } from '../../contexts/TableContext'
 import Table from '../../components/Table'
 import { TableAPI } from '../../services/TableAPI' // fetchAPI
@@ -26,6 +25,7 @@ function TablePage({ ability }) {
   const [isExpandComponent, setIsExpandComponent] = useState(false)
   const [isSubExpandComponent, setIsSubExpandComponent] = useState([])
   const [role, setRole] = useState('')
+  const [token, setToken] = useState({})
 
   useEffect(() => {
     const { columns, values } = data
@@ -47,6 +47,22 @@ function TablePage({ ability }) {
 
   const onClickView = (data) => {
     console.log({ onClickView: data })
+
+    // TableAPI.postTokenRenew({ token: token.refreshToken })
+    //   .then(({ accessToken, refreshToken }) => {
+    //     console.log({ accessToken, refreshToken })
+
+    //     TableAPI.getPermissions({ token: accessToken })
+    //       .then((user) => {
+    //         console.log({ checkRenew: user })
+    //       })
+    //   })
+
+    TableAPI.getPermissions({ token: token.accessToken })
+      .then((user) => {
+        console.log({ long_Get_Old_Token: user })
+      })
+      .catch(error => console.log({ error }))
   }
 
   const onClickMore = (eventKey, rowData) => {
@@ -191,16 +207,24 @@ function TablePage({ ability }) {
     setLoading(true)
     console.clear()
     // POST Username, Password then return { permissions: <object>, role: <string>, username: <string>, _id: <string> }
-    TableAPI.getPermissions({ username: e.target.name, password: 'password' })
-      .then((user) => {
-        // let ability = defineAbilitiesOnTableFor(user)
-        // checkActionWithPermissions(ability, e.target.name)
-        const rules = updateAbility(user)
-        ability.update(rules)
-        checkActionWithPermissions(ability, user?.role)
-        setRole(e.target.name)
-        setTableName(`Table ${e.target.name}`)
-        setLoading(false)
+    TableAPI.doAuthorization({ username: e.target.name, password: 'password' })
+      .then(({ accessToken, refreshToken }) => {
+        console.table({ accessToken, refreshToken })
+
+        console.log({ accessToken: decode(accessToken), refreshToken: decode(refreshToken) })
+
+        setToken({ accessToken, refreshToken })
+        TableAPI.getPermissions({ token: accessToken })
+          .then((user) => {
+            let ability = defineAbilitiesOnTableFor(user)
+            const rules = updateAbility(user)
+
+            ability.update(rules)
+            checkActionWithPermissions(ability, user?.role)
+            setRole(e.target.name)
+            setTableName(`Table ${e.target.name}`)
+            setLoading(false)
+          })
       })
       .catch((error) => {
         console.log({ TableAPI_getPermissions: error })
