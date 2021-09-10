@@ -16,5 +16,11 @@ export const UserRoles = [
     username: 'student',
     role: 'student',
     permissions: ['read']
-  }
+  },
+  {
+    id: 4,
+    username: 'math',
+    role: 'math',
+    permissions: ['read', 'update']
+  },
 ]

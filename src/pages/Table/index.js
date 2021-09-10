@@ -127,6 +127,34 @@ function TablePage({ ability }) {
         setTableDropdownMenuMore(updateProfessorDropdownMenuMore)
         setTableColumnActionName('View | More')
         break;
+      case 'math':
+        let updateMathValues = data.values && data.values.map((v, i) =>
+          ['Computer Engineering', 'Computer Science', ''].includes(v.field)
+            ?
+            {
+              ...v,
+              isAction: {
+                field: v.field,
+                create: false,
+                read: true,
+                update: false,
+                delete: false
+              }
+            }
+            : v
+        )
+        setData({
+          columns: TableColumns,
+          ...data.values,
+          values: updateMathValues
+        })
+        let updateMathDropdownMenuMore = tableDropdownMenuMore.map((v, i) =>
+          ({ ...v, field: ['Computer Engineering', 'Computer Science', ''] })
+        )
+        console.table(updateMathDropdownMenuMore)
+        setTableDropdownMenuMore(updateMathDropdownMenuMore)
+        setTableColumnActionName('View | More')
+        break;
       case 'student':
         let updateColumns = data.columns.filter((v, i) => !['field_id', 'active'].includes(v.column))
         // let updateColumns = data.columns.map((v, i) =>
