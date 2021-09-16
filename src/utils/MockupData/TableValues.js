@@ -89,22 +89,4 @@ export const TableValues = [
       delete: true
     }
   },
-  {
-    id: 6,
-    name: 'the babadook',
-    faculty_id: '',
-    faculty: '',
-    field_id: '',
-    field: '',
-    role: 'guest',
-    active: 1,
-    updated: 'DD/MM/YYYY HH:mm',
-    created: 'DD/MM/YYYY HH:mm',
-    isAction: {
-      create: false,
-      read: false,
-      update: false,
-      delete: false
-    }
-  },
 ]
