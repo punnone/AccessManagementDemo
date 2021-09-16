@@ -216,7 +216,7 @@ function TablePage({ ability }) {
         setToken({ accessToken, refreshToken })
         TableAPI.getPermissions({ token: accessToken })
           .then((user) => {
-            let ability = defineAbilitiesOnTableFor(user)
+            // let ability = defineAbilitiesOnTableFor(user)
             const rules = updateAbility(user)
 
             ability.update(rules)
