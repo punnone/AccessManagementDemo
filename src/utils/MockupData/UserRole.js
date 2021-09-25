@@ -1,18 +1,14 @@
 export const UserRoles = [
 	{
 		id: 1,
-		username: 'professor',
-		password: 'password',
-		// permissions: ['create', 'read', 'update', 'delete']
+		username: 'a',
+		display : "User A",
+		password: 'P@ssw0rd',
 	},
 	{
 		id: 2,
-		username: 'student',
-		password: 'password',
-	},
-	{
-		id: 2,
-		username: 'admin',
-		password: 'password',
-	},
+		username: 'c',
+		display : "User C",
+		password: 'P@ssw0rd',
+	}
 ]

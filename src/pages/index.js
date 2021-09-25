@@ -4,6 +4,8 @@ import { UserProvider } from "../contexts/userContext"
 import { AbilityContext } from '../contexts/abilityContext'
 import { Ability } from '@casl/ability'
 import { TableShowProvider } from "../contexts/tableShowContext"
+import '../assets/css/App.css'
+import '../assets/css/tailwind.css'
 
 function LandingPage(props) {
     const ability = new Ability

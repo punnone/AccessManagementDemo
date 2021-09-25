@@ -11,6 +11,7 @@ import { useAbility } from '@casl/react'
 import { TableAPI } from '../../services/TableAPI' // fetchAPI
 import Table from "../../components/Table"
 import { TableShowContext } from '../../contexts/tableShowContext'
+import Cookies from 'js-cookie'
 // import { changeFormat } from '../../utils/Abilities/Permissions'
 
 function TablePage() {
@@ -25,7 +26,9 @@ function TablePage() {
 	const [loading,setLoading] = useState(true)
 
 	useMemo(() => {
-		userContext.getPermission()
+		if(Cookies.get("access_token")){
+			userContext.getPermission()
+		}
 	},[])
 
     useEffect(() => {
@@ -88,7 +91,9 @@ function TablePage() {
 		</React.Fragment>
 		: 
 		<>
-			<p>Not Permission</p>
+			<div className="flex justify-center text-2xl mt-96" style={{marginTop:"10rem"}}>
+				Not Permission
+			</div>
 		</>
 	)
 }

@@ -22,7 +22,7 @@ function LandingPage() {
                                         password : user.password
                                     })}
                                 >
-                                    {user.username}
+                                    {user.display}
                                 </button>
                             </li>
                         </React.Fragment>
