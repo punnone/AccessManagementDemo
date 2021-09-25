@@ -1,29 +1,64 @@
 import React, { useContext, useMemo, useState } from 'react'
 import Cookie from "js-cookie"
+import _ from "lodash"
 import { verify } from "../../components/CheckToken"
 import { UserContext } from '../../contexts/userContext'
 import { useEffect } from 'react/cjs/react.development'
-import { TableColumns } from "../../utils/MockupData/TableColumns"
+import { TableColumns , TableAction } from "../../utils/MockupData/TableColumns"
 import { TableOwner } from "../../utils/MockupData/TableValues"
 import { AbilityContext , Can } from '../../contexts/abilityContext'
 import { useAbility } from '@casl/react'
-// import { TableAdminEvent } from "../../utils/MockupData/TableValues"
+import { TableAPI } from '../../services/TableAPI' // fetchAPI
+import Table from "../../components/Table"
+import { TableShowContext } from '../../contexts/tableShowContext'
+// import { changeFormat } from '../../utils/Abilities/Permissions'
 
 function TablePage() {
 	const userContext = useContext(UserContext)
+	const tableData = useContext(TableShowContext)
 	const ability = useAbility(AbilityContext)
 	const token = Cookie.get("access_token")
 	
 	const [isVerify,setIsVerify] = useState(false)
-	// const [dataTable,setDataTable] = useState()
+	const [column,setColumn] = useState([])
+	const [action,setAction] = useState([])
+	const [loading,setLoading] = useState(true)
 
 	useMemo(() => {
 		userContext.getPermission()
 	},[])
 
     useEffect(() => {
+		setLoading(true)
+		tableData.getDataTable()
         setIsVerify(verify(token))
     },[userContext.user])
+
+	useEffect(() => {
+		setLoading(false)
+	},[tableData.dataTable])
+
+	useEffect(() => {
+		setColumnWithPermission()
+	},[userContext.permission])
+
+	function setColumnWithPermission(params) {
+		const oldColumn = [...TableColumns]
+		const new_column = _.remove(oldColumn,(c,i) => {
+			// return changeFormat(c)
+			const per_split = c.permission.split(":")
+			return ability.can(per_split[0],per_split[1])
+		})
+
+		const oldAction = [...TableAction]
+		const new_Action = _.remove(oldAction,(c,i) => {
+			const per_split = c.permission.split(":")
+			return ability.can(per_split[0],per_split[1])
+		})
+
+		setAction(new_Action)
+		setColumn(new_column)
+	}
 
 
 
@@ -38,55 +73,12 @@ function TablePage() {
 						width: "calc(100vw - {8}5px - {8}rem)",
 					}}
 				>
-					
-					<table 
-						style={{
-							width : "80vw",
-							textAlign: "center"
-						}}
-					>
-						<tr>
-							{
-								TableColumns.map((c,i) => {
-									const per_split = c.permission.split(":")
-									const permission = ability.can(per_split[0],per_split[1])
-									console.log("per_split",per_split,permission)
-									return(
-										<Can do={per_split[0]} on={per_split[1]}>
-											<th 
-												key={i}
-												// style={{
-												// 	display : permission ? "block" : "none"
-												// }}
-											>
-												{c.display}
-											</th>	
-										</Can>
-									)
-								})
-							}
-							
-						</tr>
-						{
-							TableOwner.map((v,i) => {
-								return(
-									<tr 
-										key={i}
-										// style={{
-										// 	display : ability.can(per_split[0],per_split[1]) ? "block" : "none"
-										// }}
-									>
-										<td key={i}>{v.name}</td>
-										<td key={i}>{v.uid}</td>
-										<td key={i}>{v.cctv}</td>
-										<td key={i}>{v.alarm}</td>
-										<td key={i}>Edit</td>
-										<td key={i}>Edit</td>
-									</tr>
-								)
-							})
-						}
-					</table>
+					<Table
+						tcolumn = {column}
+						tvalue = {tableData.dataTable ? tableData.dataTable : []}
+						action = {action}
+						loading = {loading}
+					/>
 					
 					{/* <Can do="create" on="Table">
 						<p> can do <b>Create</b> on table</p>

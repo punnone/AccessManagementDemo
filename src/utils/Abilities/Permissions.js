@@ -1,8 +1,9 @@
-import { AbilityBuilder, Ability } from '@casl/ability'
+// import { useAbility } from '@casl/react'
+// import { AbilityContext } from '../../contexts/abilityContext'
 
-const { can, cannot, rules } = new AbilityBuilder(Ability)
+// export function changeFormat (pms) {
+// 	const ability = useAbility(AbilityContext)
 
-
-export function tableAbility(params) {
-  	can(user.permissions, "Table");
-}
+// 	const per_split = pms.permission.split(":")
+// 	return ability.can(per_split[0],per_split[1])
+// }

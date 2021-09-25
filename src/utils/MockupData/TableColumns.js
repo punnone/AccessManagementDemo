@@ -1,98 +1,48 @@
 export const TableColumns = [
 	{
-		column : "name",
-		display : "Name",
-		permission : "read:thing"
+		key : "name",
+		label : "Name",
+		permission : "read:thing",
+		fixed: true,
+		width: 70
 	},
 	{
-		column : "uid",
-		display : "UID",
-		permission : "read:uid"
+		key : "uid",
+		label : "UID",
+		permission : "read:uid",
+		fixed: true,
+		width: 70
 	},
 	{
-		column : "cctv",
-		display : "CCTV",
-		permission : "read:cctv"
+		key : "cctv",
+		label : "CCTV",
+		permission : "read:cctv",
+		fixed: true,
+		width: 70
 	},
 	{
-		column : "alarm",
-		display : "Alarm",
-		permission : "read:alarm"
-	},
-	{
-		column : "edit_thing",
-		display : "Edit Thing",
-		permission : "update:thing"
-	},
-	{
-		column : "edit_alarm",
-		display : "Edit  Alarm",
-		permission : "update:alarm"
+		key : "alarm",
+		label : "Alarm",
+		permission : "read:alarm",
+		fixed: true,
+		width: 70
 	}
 ]
 
-export const TableColumnssss = [
+export const TableAction = [
 	{
-		column: 'id',
-		display: {
-			en: 'id',
-			available: true
-		}
+		key : "edit_thing",
+		label : "Edit Thing",
+		permission : "update:thing",
+		fixed: true,
+		width: 70
 	},
 	{
-		column: 'name',
-		display: {
-			en: 'Name',
-			available: true
-		}
-	},
-	{
-		column: 'faculty_id',
-		display: {
-			en: 'Faculty_ID',
-			available: true
-		}
-	},
-	{
-		column: 'faculty',
-		display: {
-			en: 'Faculty',
-			available: true
-		}
-	},
-	{
-		column: 'field_id',
-		display: {
-			en: 'Field_ID',
-			available: true
-		}
-	},
-	{
-		column: 'field',
-		display: {
-			en: 'Field',
-			available: true
-		}
-	},
-	{
-		column: 'active',
-		display: {
-			en: 'Active',
-			available: true
-		}
-	},
-	{
-		column: 'updated',
-		display: {
-			en: 'Updated Date',
-			available: true
-		}
-	},
-	{
-		column: 'created',
-		display: {
-			en: 'Created Date',
-			available: true
-		}
+		key : "edit_alarm",
+		label : "Edit  Alarm",
+		permission : "update:alarm",
+		checkPackage : true,
+		fixed: true,
+		width: 70
 	}
 ]
