@@ -2,32 +2,32 @@ export const TableColumns = [
 	{
 		column : "name",
 		display : "Name",
-		permission : 'can("view", "thing")'
+		permission : "read:thing"
 	},
 	{
 		column : "uid",
 		display : "UID",
-		permission : 'can("view", "uid")'
+		permission : "read:uid"
 	},
 	{
 		column : "cctv",
 		display : "CCTV",
-		permission : 'can("view", "cctv")'
+		permission : "read:cctv"
 	},
 	{
 		column : "alarm",
 		display : "Alarm",
-		permission : 'can("view", "alarm")'
+		permission : "read:alarm"
 	},
 	{
 		column : "edit_thing",
 		display : "Edit Thing",
-		permission : 'can("edit", "thing")'
+		permission : "update:thing"
 	},
 	{
 		column : "edit_alarm",
-		display : "Edit Alarm",
-		permission : 'can("edit", "alarm")'
+		display : "Edit  Alarm",
+		permission : "update:alarm"
 	}
 ]
 

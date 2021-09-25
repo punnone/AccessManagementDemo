@@ -1,17 +1,17 @@
 const { AbilityBuilder, Ability } = require('@casl/ability');
-const { rules, can, cannot } = new AbilityBuilder(Ability)
 const PAGE = 'Table'
 
 export function updateAbility(permission) {
-	can('edit','thing')
-	// permission.map((p,i) => {
-	// 	const per_split = p.split(":")
-	// 	can(
-	// 		per_split[0],
-	// 		per_split[1]
-	// 	)
-	// })
-	return new Ability(rules)
+	const { rules, can, cannot } = new AbilityBuilder(Ability)
+	// can('update','thing')
+	permission.map((p,i) => {
+		const per_split = p.split(":")
+		can(
+			per_split[0],
+			per_split[1]
+		)
+	})
+	return rules
 }
 // export function defineAbilitiesOnTableFor(user) {
 //   switch (user.role) {

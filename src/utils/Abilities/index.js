@@ -1,7 +1,7 @@
-import { defineAbilitiesOnTableFor } from "./defineAbility";
-import { updateAbility } from "./Permissions";
+import { updateAbility } from "./defineAbility";
+// import { updateAbility } from "./Permissions";
 
 export {
-  defineAbilitiesOnTableFor,
+  // defineAbilitiesOnTableFor,
   updateAbility
 }

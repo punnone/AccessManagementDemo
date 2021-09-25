@@ -2,16 +2,16 @@ import React, { useState, createContext } from 'react'
 import decode from "jwt-decode"
 import Cookie from "js-cookie"
 import { TableAPI } from '../services/TableAPI' // fetchAPI
-import { updateAbility } from "../utils/Abilities/defineAbility"
+import { updateAbility } from "../utils/Abilities"
 
 export const UserContext = createContext({
     user: [],
     // setUser: () => {},
-    // getUser: () => {},
+    getPermission: () => {},
     userLogin : () => {}
 })
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({ children , ability }) => {
     const [user, setUser] = useState(null)
     const [permission, setPermission] = useState(null)
 
@@ -46,15 +46,27 @@ export const UserProvider = ({ children }) => {
     }
 
     function getPermission(params) {
+        console.log("getPermission")
+        const owner = [
+            "read:thing",
+            "update:thing",
+            "read:uid",
+            "read:alarm",
+            "read:cctv",
+            "update:alarm"
+        ]
 
-        updateAbility([
-            "view:thing",
-            "edit:thing",
-            "view:uid",
-            "view:alarm",
-            "view:cctv",
-            "edit:alarm"
-        ])
+        const admin = [
+            "read:thing",
+            "update:thing",
+            "read:alarm",
+            "update:alarm"
+        ]
+
+        setPermission(admin)
+        const zpermission = updateAbility(admin)
+        console.log("zpermission",zpermission)
+        ability.update(zpermission)
 
          // TableAPI.getPermissions({ token: accessToken })
             // .then((user) => {
@@ -73,7 +85,7 @@ export const UserProvider = ({ children }) => {
         <UserContext.Provider value={{
             user,
             // setUser,
-            // getUser,
+            getPermission,
             userLogin
         }}>
             {children}

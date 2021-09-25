@@ -1,25 +1,31 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import Cookie from "js-cookie"
 import { verify } from "../../components/CheckToken"
 import { UserContext } from '../../contexts/userContext'
 import { useEffect } from 'react/cjs/react.development'
 import { TableColumns } from "../../utils/MockupData/TableColumns"
 import { TableOwner } from "../../utils/MockupData/TableValues"
-import { TableAdminEvent } from "../../utils/MockupData/TableValues"
-import { AbilityContext } from '../../contexts/abilityContext'
+import { AbilityContext , Can } from '../../contexts/abilityContext'
+import { useAbility } from '@casl/react'
+// import { TableAdminEvent } from "../../utils/MockupData/TableValues"
 
 function TablePage() {
 	const userContext = useContext(UserContext)
-	const ability = useContext(AbilityContext)
+	const ability = useAbility(AbilityContext)
 	const token = Cookie.get("access_token")
 	
 	const [isVerify,setIsVerify] = useState(false)
-	const [dataTable,setDataTable] = useState()
+	// const [dataTable,setDataTable] = useState()
+
+	useMemo(() => {
+		userContext.getPermission()
+	},[])
 
     useEffect(() => {
-        console.log("verify token test ",verify(token))
         setIsVerify(verify(token))
     },[userContext.user])
+
+
 
 	return (
 		isVerify !== false ?
@@ -42,9 +48,20 @@ function TablePage() {
 						<tr>
 							{
 								TableColumns.map((c,i) => {
+									const per_split = c.permission.split(":")
+									const permission = ability.can(per_split[0],per_split[1])
+									console.log("per_split",per_split,permission)
 									return(
-										ability.can('edit','thing') && 
-										<th key={i}>{c.display}</th>	
+										<Can do={per_split[0]} on={per_split[1]}>
+											<th 
+												key={i}
+												// style={{
+												// 	display : permission ? "block" : "none"
+												// }}
+											>
+												{c.display}
+											</th>	
+										</Can>
 									)
 								})
 							}
@@ -53,7 +70,12 @@ function TablePage() {
 						{
 							TableOwner.map((v,i) => {
 								return(
-									<tr key={i}>
+									<tr 
+										key={i}
+										// style={{
+										// 	display : ability.can(per_split[0],per_split[1]) ? "block" : "none"
+										// }}
+									>
 										<td key={i}>{v.name}</td>
 										<td key={i}>{v.uid}</td>
 										<td key={i}>{v.cctv}</td>
