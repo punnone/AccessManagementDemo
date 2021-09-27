@@ -13,7 +13,6 @@ function LandingPage(props) {
     
 	return (
 		<>
-            testttttttt
             <AbilityContext.Provider value={ability}>
                 <UserProvider ability={ability}>
                     <div className="App">
