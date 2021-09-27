@@ -8,37 +8,46 @@ function LandingPage() {
     const [password,setPassword] = useState("P@ssw0rd")
 
 	return (
-        <header className="header">
-            <ul className="roles">
-                Username: &nbsp; &nbsp; 
-                <input
-                    name="username"
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                &nbsp; &nbsp; &nbsp; &nbsp; 
-                Password: &nbsp; &nbsp; 
-                <input
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                &nbsp; &nbsp; &nbsp; &nbsp; 
-                <button
-                    className=""
-                    onClick={() => userContext.userLogin({
-                        username : username,
-                        password : password
-                    })}
-                >
-                    Login
-                </button>
-                <br></br><br></br>
-                <hr/>
-            </ul>
-        </header>
+        <>
+            <header className="tw-my-2">
+                <div className="tw-flex tw-items-center tw-mx-5 tw-justify-center">
+                    <label className="tw-pr-2">Username:</label>
+                    <input
+                        className="tw-input-basic tw-mr-3"
+                        style={{
+                            width:"250px"
+                        }}
+                        name="username"
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <label className="tw-pr-2">Password:</label>
+                    <input
+                        className="tw-input-basic"
+                        style={{
+                            width:"250px"
+                        }}
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    &nbsp; &nbsp; &nbsp; &nbsp; 
+                    <button
+                        className="tw-btn-blue"
+                        onClick={() => userContext.userLogin({
+                            username : username,
+                            password : password
+                        })}
+                    >
+                        Login
+                    </button>
+                    <br></br><br></br>
+                </div>
+            </header>  
+            <hr/>
+        </>
 	)
 }
 
