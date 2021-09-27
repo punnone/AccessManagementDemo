@@ -7,8 +7,10 @@ import { TableShowProvider } from "../contexts/tableShowContext"
 import '../assets/css/App.css'
 import '../assets/css/tailwind.css'
 
+const ability = new Ability()
+
 function LandingPage(props) {
-    const ability = new Ability
+    
 	return (
 		<>
             testttttttt
