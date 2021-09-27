@@ -14,10 +14,12 @@ function LandingPage(props) {
             testttttttt
             <AbilityContext.Provider value={ability}>
                 <UserProvider ability={ability}>
-                    <Login/>
-                    <TableShowProvider>
-                        <Table ability={ability}/>
-                    </TableShowProvider>
+                    <div className="App">
+                        <Login/>
+                        <TableShowProvider>
+                            <Table ability={ability}/>
+                        </TableShowProvider>
+                    </div>
                 </UserProvider>
             </AbilityContext.Provider>
         </>
