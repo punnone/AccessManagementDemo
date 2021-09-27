@@ -43,7 +43,6 @@ function LandingPage() {
                     >
                         Login
                     </button>
-                    <br></br><br></br>
                 </div>
             </header>  
             <hr/>
