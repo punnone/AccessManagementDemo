@@ -3,7 +3,7 @@ import axios from "axios"
 export const TableAPI = {
 	authen: ({ username, password }) => {
 		return axios({
-			url: `${process.env.REACT_APP_API_ENDPOINT}/auth/login`,
+			url: `${process.env.REACT_APP_API_ENDPOINT}/Oauth/login`,
 			method: "POST",
 			headers: {
 				"Context-Type": "application/json"
@@ -11,43 +11,6 @@ export const TableAPI = {
 			data: {
 				username,
 				password
-			}
-		})
-		.then((response) => {
-			return response.data
-		})
-		.catch((error) => {
-			throw error
-		})
-	},
-
-	doAuthorization: ({ username, password }) => {
-		return axios({
-			url: `${process.env.REACT_APP_API_ENDPOINT}/api/v2/auth/token`,
-			method: "POST",
-			headers: {
-				"Context-Type": "application/json"
-			},
-			data: {
-				username,
-				password
-			}
-		})
-		.then((response) => {
-			return response.data
-		})
-		.catch((error) => {
-			throw error
-		})
-	},
-
-	postTokenRenew: ({ token }) => {
-		return axios({
-			url: `${process.env.REACT_APP_API_ENDPOINT}/api/v2/auth/token/refresh`,
-			method: "POST",
-			headers: {
-				"Context-Type": "application/json",
-				"Authorization": "Bearer " + token
 			}
 		})
 		.then((response) => {
@@ -60,7 +23,7 @@ export const TableAPI = {
 
 	getPermissions: ({ token }) => {
 		return axios({
-			url: `${process.env.REACT_APP_API_ENDPOINT}/auth/permission`,
+			url: `${process.env.REACT_APP_API_ENDPOINT}/permission/get`,
 			method: "GET",
 			headers: {
 				"Context-Type": "application/json",
@@ -77,7 +40,7 @@ export const TableAPI = {
 
 	getDataTables: ({ token }) => {
 		return axios({
-			url: `${process.env.REACT_APP_API_ENDPOINT}/thing/all`,
+			url: `${process.env.REACT_APP_API_ENDPOINT}/thingdemo`,
 			method: "GET",
 			headers: {
 				"Context-Type": "application/json",

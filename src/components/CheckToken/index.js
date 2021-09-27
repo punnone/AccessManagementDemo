@@ -1,5 +1,4 @@
-import jwt from "jsonwebtoken";
-import Cookie from "js-cookie"
+import jwt from "jsonwebtoken"
 
 export const verify = (token) => {
     let verify 

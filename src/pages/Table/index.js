@@ -1,18 +1,14 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState ,useEffect} from 'react'
 import Cookie from "js-cookie"
 import _ from "lodash"
-import { verify } from "../../components/CheckToken"
+import { verify } from "../../Components/CheckToken"
 import { UserContext } from '../../contexts/userContext'
-import { useEffect } from 'react/cjs/react.development'
 import { TableColumns , TableAction } from "../../utils/MockupData/TableColumns"
-import { TableOwner } from "../../utils/MockupData/TableValues"
 import { AbilityContext , Can } from '../../contexts/abilityContext'
 import { useAbility } from '@casl/react'
-import { TableAPI } from '../../services/TableAPI' // fetchAPI
-import Table from "../../components/Table"
+import Table from "../../Components/Table"
 import { TableShowContext } from '../../contexts/tableShowContext'
 import Cookies from 'js-cookie'
-// import { changeFormat } from '../../utils/Abilities/Permissions'
 
 function TablePage() {
 	const userContext = useContext(UserContext)
