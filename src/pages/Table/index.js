@@ -8,7 +8,6 @@ import { AbilityContext , Can } from '../../contexts/abilityContext'
 import { useAbility } from '@casl/react'
 import Table from "../../Components/Table"
 import { TableShowContext } from '../../contexts/tableShowContext'
-import Cookies from 'js-cookie'
 
 function TablePage() {
 	const userContext = useContext(UserContext)
@@ -21,17 +20,19 @@ function TablePage() {
 	const [action,setAction] = useState([])
 	const [loading,setLoading] = useState(true)
 
-	useMemo(() => {
-		if(Cookies.get("access_token")){
-			userContext.getPermission()
-		}
-	},[])
+	// useMemo(() => {
+	// 	if(Cookies.get("access_token")){
+	// 		userContext.getPermission()
+	// 	}
+	// },[])
 
     useEffect(() => {
-		setLoading(true)
-		tableData.getDataTable()
-        setIsVerify(verify(token))
-    },[userContext.user])
+		if(userContext.permission && !_.isEqual(userContext.permission,[])){
+			setLoading(true)
+			tableData.getDataTable()
+			setIsVerify(verify(token))
+		}
+    },[userContext.permission])
 
 	useEffect(() => {
 		setLoading(false)
@@ -88,7 +89,7 @@ function TablePage() {
 		: 
 		<>
 			<div className="flex justify-center text-2xl mt-96" style={{marginTop:"10rem"}}>
-				Not Permission
+				Not Permission. Please Login.
 			</div>
 		</>
 	)

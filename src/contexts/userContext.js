@@ -20,17 +20,9 @@ export const UserProvider = ({ children , ability }) => {
             username: username, 
             password: password
         })
-        .then(({ accessToken, refreshToken }) => {
-            // console.table({ accessToken, refreshToken })
-            // console.log("usernameee ",username)
-            // if(username === "admin"){
-            //     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjMyMzg2NDg4LCJleHAiOjE2MzU1ODUyMjQsInJvbGUiOiJvd25lciJ9.Jr5KtFpIayf-5Cc_zAqbbBmFR4W2v85etl7Oq3pqgEM"
-            //     Cookie.set("access_token",token)
-            //     setUser(decode(token))
-            // }else{
-            Cookie.set("access_token",accessToken)
-            setUser(decode(accessToken))
-            // }
+        .then((response) => {
+            Cookie.set("access_token",response.token)
+            setUser(decode(response.token))
             getPermission()
         })
         .catch((error) => {
@@ -42,7 +34,7 @@ export const UserProvider = ({ children , ability }) => {
     }
 
     function getPermission(params) {
-        console.log("getPermission")
+        // console.log("getPermission")
         if(Cookie.get("access_token")){
             const owner = [
                 "read:thing",
@@ -64,8 +56,8 @@ export const UserProvider = ({ children , ability }) => {
             })
             .then((prms) => {
                 // let ability = defineAbilitiesOnTableFor(user)
-                setPermission(prms)
-                const zpermission = updateAbility(prms)
+                setPermission(prms.permissions)
+                const zpermission = updateAbility(prms.permissions)
                 ability.update(zpermission)
             })
             .catch((err) => {
