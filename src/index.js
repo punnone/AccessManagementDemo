@@ -6,9 +6,10 @@ import GlobalStyles from './assets/GlobalStyles'
 import "./assets/css/tailwind.css"
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <GlobalStyles />
+    test 222333
     <App />
-  </React.StrictMode>,
+  </>,
   document.getElementById('root')
 );
