@@ -4,7 +4,7 @@ import {UserContext} from "../../contexts/userContext"
 function LandingPage() {
     const userContext = useContext(UserContext)
 
-    const [username,setUsername] = useState("admin")
+    const [username,setUsername] = useState("owner")
     const [password,setPassword] = useState("1234")
 
 	return (

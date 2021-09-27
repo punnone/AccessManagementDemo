@@ -7,15 +7,19 @@ import { updateAbility } from "../utils/Abilities"
 export const UserContext = createContext({
     user: [],
     permission : [],
+    loading : false,
     getPermission: () => {},
     userLogin : () => {}
 })
 
 export const UserProvider = ({ children , ability }) => {
+    
     const [user, setUser] = useState(null)
     const [permission, setPermission] = useState(null)
+    const [loading,setLoading] = useState(false)
 
     function userLogin({username, password}) {
+        setLoading(true)
         TableAPI.authen({ 
             username: username, 
             password: password
@@ -29,39 +33,25 @@ export const UserProvider = ({ children , ability }) => {
             console.log("login error", error )
             setUser(null)
             Cookie.remove("access_token")
-            // setLoading(false)
+            setLoading(false)
         })
     }
 
     function getPermission(params) {
         // console.log("getPermission")
         if(Cookie.get("access_token")){
-            const owner = [
-                "read:thing",
-                "update:thing",
-                "read:uid",
-                "read:alarm",
-                "read:cctv",
-                "update:alarm"
-            ]
-            const admin = [
-                "read:thing",
-                "update:thing",
-                "read:alarm",
-                "update:alarm"
-            ]
-    
             TableAPI.getPermissions({ 
                 token: Cookie.get("access_token")
             })
             .then((prms) => {
-                // let ability = defineAbilitiesOnTableFor(user)
-                setPermission(prms.permissions)
                 const zpermission = updateAbility(prms.permissions)
                 ability.update(zpermission)
+                setPermission(prms.permissions)
+                setLoading(false)
             })
             .catch((err) => {
                 alert("Get permission is went wrong. Plese try again.")
+                setLoading(false)
             })
         }else{
             alert("Please login")
@@ -72,6 +62,7 @@ export const UserProvider = ({ children , ability }) => {
         <UserContext.Provider value={{
             user,
             permission,
+            loading,
             getPermission,
             userLogin
         }}>

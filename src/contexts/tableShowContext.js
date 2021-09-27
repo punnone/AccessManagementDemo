@@ -4,28 +4,34 @@ import Cookies from 'js-cookie'
 
 export const TableShowContext = createContext({
     dataTable: [],
-    getDataTable : () => {}
+    getDataTable : () => {},
+    setDataTable : () => {}
 })
 
 export const TableShowProvider = ({ children , ability }) => {
-    const [dataTable, setDataTable] = useState(null)
+    const [dataTable, _setDataTable] = useState(null)
 
     function getDataTable() {
         TableAPI.getDataTables({ 
             token : Cookies.get("access_token")
         })
         .then((response) => {
-            setDataTable(response)
+            _setDataTable(response)
         })
         .catch((error) => {
             alert("Get data table is went wrong. Plese try again.")
         })
     }
 
+    function setDataTable(data) {
+        _setDataTable(data)
+    }
+
     return (
         <TableShowContext.Provider value={{
             dataTable,
-            getDataTable
+            getDataTable,
+            setDataTable
         }}>
             {children}
         </TableShowContext.Provider>

@@ -20,12 +20,6 @@ function TablePage() {
 	const [action,setAction] = useState([])
 	const [loading,setLoading] = useState(true)
 
-	// useMemo(() => {
-	// 	if(Cookies.get("access_token")){
-	// 		userContext.getPermission()
-	// 	}
-	// },[])
-
     useEffect(() => {
 		if(userContext.permission && !_.isEqual(userContext.permission,[])){
 			setLoading(true)
@@ -33,10 +27,6 @@ function TablePage() {
 			setIsVerify(verify(token))
 		}
     },[userContext.permission])
-
-	useEffect(() => {
-		setLoading(false)
-	},[tableData.dataTable])
 
 	useEffect(() => {
 		setColumnWithPermission()
@@ -58,8 +48,8 @@ function TablePage() {
 
 		setAction(new_Action)
 		setColumn(new_column)
+		setLoading(false)
 	}
-
 
 
 	return (
@@ -67,17 +57,18 @@ function TablePage() {
 		<React.Fragment>
 			<main className="h-100 flex items-center justify-center">
 				<div
-					className="flex flex-column h-100 w-auto mh{8}"
-					style={{
-						height: "calc(100vh - {8}5px - {8}rem)",
-						width: "calc(100vw - {8}5px - {8}rem)",
-					}}
+					className="flex flex-column h-100 w-auto mh-8"
+					// style={{
+					// 	height: "calc(100vh - {8}5px - {8}rem)",
+					// 	width: "calc(100vw - {8}5px - {8}rem)",
+					// }}
 				>
 					<Table
 						tcolumn = {column}
 						tvalue = {tableData.dataTable ? tableData.dataTable : []}
 						action = {action}
-						loading = {loading}
+						loading = {loading || userContext.loading}
+						noData = {loading ? [] : false}
 					/>
 					
 					{/* <Can do="create" on="Table">
@@ -87,6 +78,13 @@ function TablePage() {
 			</main>
 		</React.Fragment>
 		: 
+		userContext.loading ? 
+		<>
+			<div className="flex justify-center text-2xl mt-96" style={{marginTop:"10rem"}}>
+				Loading.......
+			</div>
+		</>
+		:
 		<>
 			<div className="flex justify-center text-2xl mt-96" style={{marginTop:"10rem"}}>
 				Not Permission. Please Login.

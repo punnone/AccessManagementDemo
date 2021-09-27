@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect , useState } from 'react';
 import { 
     Table,
     IconButton,
@@ -7,27 +7,10 @@ import {
 import 'rsuite-table/dist/css/rsuite-table.css'
 import './Table.css'
 
-const CompactCell = props => <Table.Cell {...props} style={{ padding: 4 }} />;
-const CompactHeaderCell = props => (
-  <Table.HeaderCell {...props} style={{ padding: 4, backgroundColor: '#3498ff', color: '#fff' }} />
-);
-
-function TableCustom({tcolumn,tvalue,action,loading}) {
-    const data = tvalue
-    const [compact, setCompact] = React.useState(true);
-    const [bordered, setBordered] = React.useState(true);
-    const [noData, setNoData] = React.useState(false);
-    const [showHeader, setShowHeader] = React.useState(true);
-    const [autoHeight, setAutoHeight] = React.useState(true);
-    const [hover, setHover] = React.useState(true);
-    const [columnKeys, setColumnKeys] = React.useState(tcolumn.map(column => column.key));
-
-    const columns = tcolumn.filter(column => columnKeys.some(key => key === column.key));
-    const CustomCell = compact ? CompactCell : Table.Cell;
-    const CustomHeaderCell = compact ? CompactHeaderCell : Table.HeaderCell;
-
+function TableCustom({tcolumn,tvalue,action,loading,noData}) {
 
     const ActionCell = ({ rowData, dataKey, ...props }) => {
+        // console.log("check package ",props.checkPackage,rowData.package)
         function handleAction() {
             alert(`Name : ${rowData[dataKey]}`);
         }
@@ -46,44 +29,55 @@ function TableCustom({tcolumn,tvalue,action,loading}) {
     }
 
     return (
-        <div>
-            <Table
-                loading={loading}
-                height={500}
-                hover={hover}
-                showHeader={showHeader}
-                autoHeight={autoHeight}
-                data={noData ? [] : data}
-                bordered={bordered}
-                cellBordered={bordered}
-                headerHeight={compact ? 80 : 90}
-                rowHeight={compact ? 80 : 96}
-                affixHorizontalScrollbar
-                width={"80vw"}
+        <div className="rs-panel rs-panel-default">
+            <div 
+                className="rs-panel-body bg-white" 
+                style={{width:"80vw"}}
             >
-                {
-                    columns.map(column => {
-                        const { key, label, ...rest } = column;
-                        return (
-                            <Table.Column {...rest} key={key} width={160} align="center">
-                                <CustomHeaderCell>{label}</CustomHeaderCell>
-                                <CustomCell dataKey={key} />
-                            </Table.Column>
-                        );
-                    })
-                }
-                {
-                    action.map(action => {
-                        const { key, label, ...rest } = action;
-                        return (
-                            <Table.Column {...rest} key={key} width={160} align="center">
-                                <CustomHeaderCell>{label}</CustomHeaderCell>
-                                <ActionCell dataKey="name" action/>
-                            </Table.Column>
-                        );
-                    })
-                }
-            </Table> 
+                <Table
+                    loading={loading}
+                    height={500}
+                    hover={true}
+                    showHeader={true}
+                    autoHeight={true}
+                    data={noData ? [] : tvalue}
+                    bordered={true}
+                    cellBordered={true}
+                    virtualized
+                    affixHorizontalScrollbar
+                >
+                    {
+                        tcolumn.map(column => {
+                            const { key, label, ...rest } = column;
+                            return (
+                                <Table.Column {...rest} key={key} width={160} align="center">
+                                    <Table.HeaderCell
+                                        style={{ padding: 2, backgroundColor: '#3498ff', color: '#fff' }}
+                                    >
+                                        {label}
+                                    </Table.HeaderCell>
+                                    <Table.Cell dataKey={key} />
+                                </Table.Column>
+                            );
+                        })
+                    }
+                    {
+                        action.map(action => {
+                            const { key, label, ...rest } = action;
+                            return (
+                                <Table.Column {...rest} key={key} width={160} align="center">
+                                    <Table.HeaderCell
+                                        style={{ padding: 2, backgroundColor: '#3498ff', color: '#fff' }}
+                                    >
+                                        {label}
+                                    </Table.HeaderCell>
+                                    <ActionCell dataKey="name" action/>
+                                </Table.Column>
+                            );
+                        })
+                    }
+                </Table> 
+            </div>
         </div>
     )
 }
