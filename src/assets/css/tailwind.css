@@ -29,7 +29,7 @@
         height:36px;
     }
 
-    .tw-btn-base{
+    .tw-btn{
         height:40px;
     }
 
@@ -43,6 +43,10 @@
 
     .tw-line-color{
         border-color:rgba(0, 0, 0, 0.1);
+    }
+
+    .bg-page{
+        background-color:#F7F7F7;
     }
   }
  
